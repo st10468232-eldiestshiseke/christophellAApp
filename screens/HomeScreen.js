@@ -34,6 +34,12 @@ export default function HomeScreen({ navigation, menuItems }) {
         <Text style={styles.title}>Christoffel’s Menu</Text>
 
         {/* Summary Card */}
+         <ImageBackground
+          source={{ uri: 'https://images.unsplash.com/photo-1673238114180-4f9ca7d69b0f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1lbnUlMjBmb29kfGVufDB8fDB8fHww' }} // Replace with your image URL
+          style={styles.summaryCardBackground}
+          resizeMode="cover"
+          imageStyle={{ borderRadius: 10, opacity: 0.5 }} 
+        >
         <View style={styles.summaryCard}>
           <Text style={styles.summaryCardTitle}>Menu Summary</Text>
           <View style={styles.summaryRow}>
@@ -53,18 +59,25 @@ export default function HomeScreen({ navigation, menuItems }) {
             <Text style={styles.summaryValue}>R{calculateAverage('Desserts')}</Text>
           </View>
         </View>
-
+        </ImageBackground>
         {/* Menu Items List */}
         <FlatList
           data={menuItems}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
+            <ImageBackground
+          source={{ uri: 'https://images.unsplash.com/photo-1673238115013-a0f4a9a276f8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG1lbnUlMjBmb29kfGVufDB8fDB8fHww' }} // Replace with your image URL
+          style={styles.summaryCardBackground}
+          resizeMode="cover"
+           imageStyle={{ borderRadius: 20, opacity: 0.7 }} 
+        >
             <View style={styles.menuCard}>
               <Text style={styles.menuCardTitle}>{item.dishName}</Text>
               <Text>{item.description}</Text>
               <Text>Course: {item.course}</Text>
               <Text>Price: R{item.price}</Text>
             </View>
+            </ImageBackground>
           )}
         />
 
@@ -138,17 +151,19 @@ const styles = StyleSheet.create({
   },
   summaryLabel: {
     fontSize: 14,
-    color: '#444',
+    color: '#030108ff',
+    fontWeight: 'bold',
   },
   summaryValue: {
     fontSize: 14,
     fontWeight: 'bold',
+      color: '#d31212ff',
   },
   menuCard: {
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
-    backgroundColor: '#fff',
+    
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },

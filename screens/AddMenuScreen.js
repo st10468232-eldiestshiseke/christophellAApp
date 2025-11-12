@@ -89,6 +89,12 @@ export default function AddMenuScreen({ navigation, addMenuItem, removeMenuItem,
           data={menuItems}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item, index }) => (
+             <ImageBackground
+                      source={{ uri: 'https://images.unsplash.com/photo-1557499305-bd68d0ad468d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1lbnUlMjBpdGVtfGVufDB8fDB8fHww' }} // Replace with your image URL
+                      style={styles.summaryCardBackground}
+                      resizeMode="cover"
+                       imageStyle={{ borderRadius: 20, opacity: 0.5 }} 
+                    >
             <View style={styles.card}>
               <Text style={styles.cardTitle}>{item.dishName}</Text>
               <Text style={styles.cardDescription}>{item.description}</Text>
@@ -100,6 +106,7 @@ export default function AddMenuScreen({ navigation, addMenuItem, removeMenuItem,
                 <Text style={styles.removeButtonText}>Remove</Text>
               </TouchableOpacity>
             </View>
+            </ImageBackground>
           )}
         />
       </View>
@@ -155,7 +162,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   card: {
-
     padding: 15,
     borderRadius: 8,
     marginBottom: 10,
@@ -171,11 +177,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   cardDescription: {
-    color: '#555',
+    color: '#3e22dfff',
     marginBottom: 5,
+     fontWeight: 'bold',
   },
   cardCourse: {
-    color: '#777',
+    color: '#c51818ff',
     marginBottom: 10,
   },
   removeButton: {
