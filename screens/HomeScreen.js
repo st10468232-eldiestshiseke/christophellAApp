@@ -6,10 +6,13 @@
  * Date accessed: 27/08/2025
  */
 // HomeScreen.js
-import React from 'react';
-import { View, Text, TextInput, Button, FlatList, StyleSheet, ImageBackground } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ImageBackground, FlatList, TouchableOpacity } from 'react-native';
 
 export default function HomeScreen({ navigation, menuItems }) {
+  const [addButtonPressed, setAddButtonPressed] = useState(false);
+  const [filterButtonPressed, setFilterButtonPressed] = useState(false);
+
   // Calculate total dishes
   const totalItems = menuItems.length;
 
@@ -21,63 +24,158 @@ export default function HomeScreen({ navigation, menuItems }) {
     return (total / filtered.length).toFixed(2);
   };
 
-    const CourseCard = ({ courseName, price }) => (
-    <View style={styles.courseCard}>
-      <Text style={styles.courseCardTitle}>{courseName}</Text>
-      <Text style={styles.courseCardPrice}>R{price.toFixed(2)}</Text>
-    </View>
-  );
-
-
   return (
-     <ImageBackground
-      source={{ uri: 'https://i.pinimg.com/736x/d1/81/28/d181288201887353a6d459b97aeb17af.jpg' }} 
-      style={styles.container}
+    <ImageBackground
+      source={{ uri: 'https://i.pinimg.com/736x/d1/81/28/d181288201887353a6d459b97aeb17af.jpg' }}
+      style={styles.background}
       resizeMode="cover"
     >
-    <View style={styles.container}>
-      <Text style={styles.title}>Christoffel’s Menu</Text>
-      <Text style={styles.summary}>Total Dishes: {totalItems}</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>Christoffel’s Menu</Text>
 
-      <Text style={styles.average}>Average Price (Starters): R{calculateAverage('Starters')}</Text>
-      <Text style={styles.average}>Average Price (Mains): R{calculateAverage('Mains')}</Text>
-      <Text style={styles.average}>Average Price (Desserts): R{calculateAverage('Desserts')}</Text>
-
-      <FlatList
-        data={menuItems}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Text style={styles.name}>{item.dishName}</Text>
-            <Text>{item.description}</Text>
-            <Text>Course: {item.course}</Text>
-            <Text>Price: R{item.price}</Text>
+        {/* Summary Card */}
+        <View style={styles.summaryCard}>
+          <Text style={styles.summaryCardTitle}>Menu Summary</Text>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Total Dishes:</Text>
+            <Text style={styles.summaryValue}>{totalItems}</Text>
           </View>
-        )}
-      />
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Average Price (Starters):</Text>
+            <Text style={styles.summaryValue}>R{calculateAverage('Starters')}</Text>
+          </View>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Average Price (Mains):</Text>
+            <Text style={styles.summaryValue}>R{calculateAverage('Mains')}</Text>
+          </View>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryLabel}>Average Price (Desserts):</Text>
+            <Text style={styles.summaryValue}>R{calculateAverage('Desserts')}</Text>
+          </View>
+        </View>
 
-      <View style={styles.buttons}>
-        <Button title="Add Menu Item" onPress={() => navigation.navigate('Add Menu')} />
-        <Button title="Filter Menu" onPress={() => navigation.navigate('Filter')} />
+        {/* Menu Items List */}
+        <FlatList
+          data={menuItems}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.menuCard}>
+              <Text style={styles.menuCardTitle}>{item.dishName}</Text>
+              <Text>{item.description}</Text>
+              <Text>Course: {item.course}</Text>
+              <Text>Price: R{item.price}</Text>
+            </View>
+          )}
+        />
+
+        {/* Buttons */}
+        <View style={styles.buttons}>
+          <TouchableOpacity
+            style={[
+              styles.button,
+              addButtonPressed && styles.buttonPressed,
+            ]}
+            activeOpacity={0.7}
+            onPressIn={() => setAddButtonPressed(true)}
+            onPressOut={() => setAddButtonPressed(false)}
+            onPress={() => navigation.navigate('Add Menu')}
+          >
+            <Text style={styles.buttonText}>ADD MENU ITEM</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.button,
+              filterButtonPressed && styles.buttonPressed,
+            ]}
+            activeOpacity={0.7}
+            onPressIn={() => setFilterButtonPressed(true)}
+            onPressOut={() => setFilterButtonPressed(false)}
+            onPress={() => navigation.navigate('Filter')}
+          >
+            <Text style={styles.buttonText}>FILTER MENU</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: '#f9f9f9' },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 10, textAlign: 'center' },
-  summary: { fontSize: 16, marginVertical: 10, textAlign: 'center' },
-  average: { fontSize: 14, marginBottom: 5, textAlign: 'center', color: '#444' },
-  card: {
+  background: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  summaryCard: {
+    backgroundColor: '#',
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  summaryCardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  summaryRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
+  summaryLabel: {
+    fontSize: 14,
+    color: '#444',
+  },
+  summaryValue: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  menuCard: {
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
+    backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
   },
-  name: { fontWeight: 'bold', fontSize: 18 },
-  buttons: { flexDirection: 'row', justifyContent: 'space-around', marginTop: 20 },
+  menuCardTitle: {
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 20,
+  },
+  button: {
+    backgroundColor: '#3498db',
+    padding: 12,
+    borderRadius: 8,
+    flex: 1,
+    marginHorizontal: 5,
+    alignItems: 'center',
+  },
+  buttonPressed: {
+    backgroundColor: '#2980b9',
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 });

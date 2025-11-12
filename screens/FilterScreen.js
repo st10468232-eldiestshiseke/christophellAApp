@@ -54,6 +54,12 @@ export default function FilterScreen({ menuItems }) {
 
 
 const styles = StyleSheet.create({
+   title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
   container: { flex:1, padding:20, backgroundColor:'#' },
   header: { fontSize:22, fontWeight:'bold', marginBottom:12 },
   input: { borderWidth:1, borderColor:'#ddd', padding:8, borderRadius:8, marginBottom:10 },
