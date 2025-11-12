@@ -1,7 +1,10 @@
-// App.js
-// Christoffel’s Menu App - Final PoE Part 3
-// Author: Eldies Tshiseke
-// Date: November 2025
+/**
+ * Title: IIE Module Manual 2025
+ * Author: The Independent Institute of Education (Pty) Ltd
+ * Version: First Edition (2022)
+ * Available at: https://advtechonline.sharepoint.com/:w:/r/sites/TertiaryStudents/_layouts/15/Doc.aspx?sourcedoc=%7BC4AAF478-96AC-4469-8005-F7CDC4A15EBB%7D&file=MAST5112MM.docx&action=default&mobileredirect=true
+ * Date accessed: 27/08/2025
+ */
 
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
