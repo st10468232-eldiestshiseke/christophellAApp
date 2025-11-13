@@ -69,13 +69,13 @@ export default function HomeScreen({ navigation, menuItems }) {
           source={{ uri: 'https://images.unsplash.com/photo-1673238115013-a0f4a9a276f8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG1lbnUlMjBmb29kfGVufDB8fDB8fHww' }} // Replace with your image URL
           style={styles.summaryCardBackground}
           resizeMode="cover"
-           imageStyle={{ borderRadius: 20, opacity: 0.7 }} 
+           imageStyle={{ borderRadius: 20, opacity: 0.5 }} 
         >
             <View style={styles.menuCard}>
               <Text style={styles.menuCardTitle}>{item.dishName}</Text>
-              <Text>{item.description}</Text>
-              <Text>Course: {item.course}</Text>
-              <Text>Price: R{item.price}</Text>
+              <Text style={styles.menuCardMenu}>{item.description}</Text>
+              <Text style={styles.menuCardMenu}>Course: {item.course}</Text>
+              <Text style={styles.menuCardPrice}>Price: R{item.price}</Text>
             </View>
             </ImageBackground>
           )}
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
   summaryLabel: {
     fontSize: 14,
-    color: '#030108ff',
+    color: '#02000aff',
     fontWeight: 'bold',
   },
   summaryValue: {
@@ -163,10 +163,17 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
-    
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
+  },
+  menuCardMenu: {
+   fontWeight: 'bold',
+   color: '#1e0cbcff',
+  },
+  menuCardPrice: {
+   fontWeight: 'bold',
+    color: '#ed2a2aff',
   },
   menuCardTitle: {
     fontWeight: 'bold',
