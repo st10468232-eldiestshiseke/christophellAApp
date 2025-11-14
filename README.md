@@ -127,8 +127,10 @@ Improved FlatList rendering for smoother scrolling.
  | **Responsive Layout**     | Basic responsiveness                    | Optimized for different screen sizes and orientations |
 
  ### **Youtube Link**
- https://www.youtube.com/shorts/KYKngAeaGTY
+ https://www.youtube.com/shorts/CAk0C74SNtc
  ### **App Screenshorts**
+ ![WhatsApp Image 2025-11-14 at 21 05 14_dbf38d11](https://github.com/user-attachments/assets/858ca43e-70f7-4538-829d-96226e9b8ac0)
+
  <img width="400" height="1000" alt="image" src=https://github.com/user-attachments/assets/9ee3ad25-625a-4b2d-a0ad-36146df663d2>
 <img width="400" height="1000" alt="image" src=https://github.com/user-attachments/assets/3efb1a32-0098-48ce-b55f-750d32093476/>
 <img width="400" height="1000" alt="image" src=https://github.com/user-attachments/assets/9aeea591-ac23-4328-84f4-c6e5a31260fa/>
