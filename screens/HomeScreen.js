@@ -29,17 +29,22 @@ export default function HomeScreen({ navigation, menuItems }) {
       source={{ uri: 'https://i.pinimg.com/736x/d1/81/28/d181288201887353a6d459b97aeb17af.jpg' }}
       style={styles.background}
       resizeMode="cover"
+      
     >
+      
+     <View style={styles.darkOverlay}>
+      
       <View style={styles.container}>
         <Text style={styles.title}>Christoffel’s Menu</Text>
 
         {/* Summary Card */}
          <ImageBackground
-          source={{ uri: 'https://images.unsplash.com/photo-1673238114180-4f9ca7d69b0f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1lbnUlMjBmb29kfGVufDB8fDB8fHww' }} // Replace with your image URL
+          source={{ uri: 'https://images.unsplash.com/photo-1495195129352-aeb325a55b65?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWVudSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D' }} // Replace with your image URL
           style={styles.summaryCardBackground}
           resizeMode="cover"
-          imageStyle={{ borderRadius: 10, opacity: 0.5 }} 
+          imageStyle={{ borderRadius: 10, opacity: 1.4 }} 
         >
+      
         <View style={styles.summaryCard}>
           <Text style={styles.summaryCardTitle}>Menu Summary</Text>
           <View style={styles.summaryRow}>
@@ -64,19 +69,24 @@ export default function HomeScreen({ navigation, menuItems }) {
         <FlatList
           data={menuItems}
           keyExtractor={(item, index) => index.toString()}
+          style={{ marginTop: 15 }} 
+          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           renderItem={({ item }) => (
+            
             <ImageBackground
-          source={{ uri: 'https://images.unsplash.com/photo-1673238115013-a0f4a9a276f8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG1lbnUlMjBmb29kfGVufDB8fDB8fHww' }} // Replace with your image URL
+          source={{ uri: 'https://images.pexels.com/photos/1775043/pexels-photo-1775043.jpeg' }} // Replace with your image URL
           style={styles.summaryCardBackground}
           resizeMode="cover"
-           imageStyle={{ borderRadius: 20, opacity: 0.5 }} 
+           imageStyle={{ borderRadius: 10, opacity: 1,  }} 
         >
+          
             <View style={styles.menuCard}>
               <Text style={styles.menuCardTitle}>{item.dishName}</Text>
               <Text style={styles.menuCardMenu}>{item.description}</Text>
               <Text style={styles.menuCardMenu}>Course: {item.course}</Text>
               <Text style={styles.menuCardPrice}>Price: R{item.price}</Text>
             </View>
+           
             </ImageBackground>
           )}
         />
@@ -109,6 +119,7 @@ export default function HomeScreen({ navigation, menuItems }) {
           </TouchableOpacity>
         </View>
       </View>
+      </View>
     </ImageBackground>
   );
 }
@@ -117,26 +128,33 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
   },
+   darkOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)', // Dark overlay to make the image appear darker
+   
+  },
   container: {
     flex: 1,
     padding: 20,
+     backgroundColor: 'rgba(0, 0, 0, 0.1)'
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
+    color: '#010d14ff',
   },
   summaryCard: {
-    backgroundColor: '#',
+    
     borderRadius: 10,
     padding: 15,
-    marginBottom: 15,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    marginBottom: 10, //
+    shadowColor: '#ffff',
+    shadowOffset: { width: 0, height: 0.1 },
     shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowRadius: 1,
+    elevation: 2,
   },
   summaryCardTitle: {
     fontSize: 18,
@@ -151,29 +169,36 @@ const styles = StyleSheet.create({
   },
   summaryLabel: {
     fontSize: 14,
-    color: '#02000aff',
+    color: '#141314ff',
     fontWeight: 'bold',
   },
   summaryValue: {
     fontSize: 14,
     fontWeight: 'bold',
-      color: '#d31212ff',
+      color: '#b51b1bff',
+  },
+   summaryImage: {
+    width: '100%',
+    height: 150,
+    position: 'absolute',
+    borderRadius: 15,
   },
   menuCard: {
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
     shadowColor: '#000',
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.7,
     shadowOffset: { width: 0, height: 2 },
+    
   },
   menuCardMenu: {
    fontWeight: 'bold',
-   color: '#1e0cbcff',
+   color: '#081dbbff',
   },
   menuCardPrice: {
    fontWeight: 'bold',
-    color: '#ed2a2aff',
+    color: '#ec0e0eff',
   },
   menuCardTitle: {
     fontWeight: 'bold',

@@ -35,6 +35,7 @@ export default function AddMenuScreen({ navigation, addMenuItem, removeMenuItem,
       style={styles.background}
       resizeMode="cover"
     >
+       <View style={styles.darkOverlay}> 
       <View style={styles.container}>
         <Text style={styles.title}>Add Menu Item</Text>
 
@@ -88,6 +89,8 @@ export default function AddMenuScreen({ navigation, addMenuItem, removeMenuItem,
         <FlatList
           data={menuItems}
           keyExtractor={(item, index) => index.toString()}
+            style={{ marginTop: 15 }} 
+            ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           renderItem={({ item, index }) => (
              <ImageBackground
                       source={{ uri: 'https://images.unsplash.com/photo-1557499305-bd68d0ad468d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1lbnUlMjBpdGVtfGVufDB8fDB8fHww' }} // Replace with your image URL
@@ -95,6 +98,7 @@ export default function AddMenuScreen({ navigation, addMenuItem, removeMenuItem,
                       resizeMode="cover"
                        imageStyle={{ borderRadius: 20, opacity: 0.5 }} 
                     >
+                  
             <View style={styles.card}>
               <Text style={styles.cardTitle}>{item.dishName}</Text>
               <Text style={styles.cardDescription}>{item.description}</Text>
@@ -106,9 +110,11 @@ export default function AddMenuScreen({ navigation, addMenuItem, removeMenuItem,
                 <Text style={styles.removeButtonText}>Remove</Text>
               </TouchableOpacity>
             </View>
+           
             </ImageBackground>
           )}
         />
+         </View>
       </View>
     </ImageBackground>
   );
@@ -117,6 +123,11 @@ export default function AddMenuScreen({ navigation, addMenuItem, removeMenuItem,
 const styles = StyleSheet.create({
   background: {
     flex: 1,
+  },
+   darkOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Dark overlay to make the image appear darker
+    
   },
   container: {
     flex: 1,
@@ -131,15 +142,15 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#2094dcff',
     borderRadius: 8,
     padding: 10,
     marginBottom: 15,
     backgroundColor: '#fff',
   },
   pickerContainer: {
-    borderWidth: 1,
-    borderColor: '#ccc',
+    borderWidth: 2,
+    borderColor: '#508dd7ff',
     borderRadius: 8,
     marginBottom: 15,
     backgroundColor: '#fff',
@@ -163,13 +174,6 @@ const styles = StyleSheet.create({
   },
   card: {
     padding: 15,
-    borderRadius: 8,
-    marginBottom: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
   },
   cardTitle: {
     fontWeight: 'bold',
@@ -182,7 +186,7 @@ const styles = StyleSheet.create({
      fontWeight: 'bold',
   },
   cardCourse: {
-    color: '#c51818ff',
+    color: '#400ec1ff',
     marginBottom: 10,
   },
   removeButton: {

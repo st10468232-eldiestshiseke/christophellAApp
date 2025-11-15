@@ -20,6 +20,7 @@ export default function FilterScreen({ menuItems }) {
       style={styles.background}
       resizeMode="cover"
     >
+      <View style={styles.darkOverlay}>
       <View style={styles.container}>
         <Text style={styles.title}>Filter Menu by Course</Text>
 
@@ -38,18 +39,21 @@ export default function FilterScreen({ menuItems }) {
         <FlatList
           data={filteredItems}
           keyExtractor={(item, index) => index.toString()}
+            style={{ marginTop: 15 }} 
+            ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           renderItem={({ item }) => (
           <ImageBackground
-                     source={{ uri: 'https://plus.unsplash.com/premium_photo-1674930127256-53a3a3d7f056?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZmlsdGVyJTIwY29mZmVlfGVufDB8fDB8fHww' }} // Replace with your image URL
+                     source={{ uri: 'https://images.pexels.com/photos/955137/pexels-photo-955137.jpeg' }} // Replace with your image URL
                      style={styles.summaryCardBackground}
                      resizeMode="cover"
-                     imageStyle={{ borderRadius: 20, opacity: 0.8 }} 
+                     imageStyle={{ borderRadius: 10, opacity: 0.5 }} 
                               >
-            
+             
             <View style={styles.card}>
               <Text style={styles.cardTitle}>{item.dishName}</Text>
               <Text style={styles.cardDescription}>{item.description}</Text>
               <Text style={styles.cardPrice}>Price: R{item.price}</Text>
+           
             </View>
             </ImageBackground>
           )}
@@ -57,6 +61,7 @@ export default function FilterScreen({ menuItems }) {
             <Text style={styles.emptyText}>No items found.</Text>
           }
         />
+         </View>
       </View>
     </ImageBackground>
   );
@@ -65,6 +70,13 @@ export default function FilterScreen({ menuItems }) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
+  },
+   darkOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Dark overlay to make the image appear darker
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
   },
   container: {
     flex: 1,
@@ -77,8 +89,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   pickerContainer: {
-    borderWidth: 1,
-    borderColor: '#ccc',
+    borderWidth: 2,
+    borderColor: '#4ca5cbff',
     borderRadius: 8,
     marginBottom: 20,
     backgroundColor: '#fff',
@@ -103,12 +115,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   cardDescription: {
-    color: '#1a78e3ff',
+    color: '#ffff',
     marginBottom: 5,
     fontWeight: 'bold',
   },
   cardPrice: {
-    color: '#e02b31ff',
+    color: '#1d07c6ff',
     fontWeight: 'bold',
   },
   emptyText: {
