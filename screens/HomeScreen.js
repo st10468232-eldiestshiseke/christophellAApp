@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
   },
   menuCardPrice: {
    fontWeight: 'bold',
-    color: '#ec0e0eff',
+    color: '#fe0909ff',
   },
   menuCardTitle: {
     fontWeight: 'bold',
